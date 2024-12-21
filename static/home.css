@@ -1,0 +1,25 @@
+.container {
+    max-width: none;
+    gap: 34px;
+    height: 650px;
+    background-repeat: no-repeat;
+    background-image: url("/images/background-blue.png");
+    background-size: 100% 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    @apply text-white
+}
+
+.home-branch{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+

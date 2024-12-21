@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: BuenosAires;
+    src: url("/fonts/buenosairesweb-regular.woff2");
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+    font-family: BuenosAires-bold;
+    src: url("/fonts//buenosairesweb-bold.woff2");
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+    font-family: BuenosAires-semibold;
+    src: url("/fonts//buenosairesweb-semibold.woff2");
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+    font-family: BuenosAires-thin;
+    src: url("/fonts//buenosairesweb-thin.woff2s");
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: BuenosAires;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 54.6px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 50.4px;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 31.2px;
+}
+
+h4 {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 33px;
+}
+h5 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25.2px;
+}
+
+p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25.6px;
+}
+
+.btn-coloured {
+    height: 48px;
+    min-width: 160px;
+    line-height: 19.2px;
+    text-align: center;
+    background-color: linear-gradient(#ff6a56, #fdaf4d);
+    border-radius: 8px;
+    box-shadow: 0px 8px 30px 0px #0a021733;
+
+    :hover {
+        background-color: linear-gradient(#fdaf4d, #ff6a56);
+    }
+}
+
+.btn-black-lined {
+    font-weight: 600;
+    height: 48px;
+    min-width: 160px;
+    line-height: 19.2px;
+    text-align: center;
+    color: #0e1b2c;
+    border-radius: 8px;
+    box-shadow: 0px 8px 30px 0px #0a021733;
+
+    :hover {
+        color: #ffffff;
+        background-color: #0e1b2c;
+    }
+}
+
+.btn-white-lined {
+    font-weight: 600;
+    height: 48px;
+    min-width: 160px;
+    line-height: 19.2px;
+    text-align: center;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+
+    :hover {
+        color: #ff7361;
+        background-color: #ffffff;
+    }
+}
+
+.btn-orange-lined {
+    font-weight: 600;
+    height: 48px;
+    min-width: 160px;
+    line-height: 19.2px;
+    text-align: center;
+    color: #ff7361;
+    border: 1px solid #ff7361;
+    border-radius: 8px;
+}
+
+.btn-text {
+    font-weight: 600;
+    width: min-content;
+    font-size: 16px;
+    line-height: 19.2px;
+    text-align: center;
+    color: #ff7361;
+    border: 1px solid #ff7361;
+    border-radius: 8px;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+}
+
+.rectangle-bottom-overlay {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.rectangle-bottom-overlay::after {
+    position: absolute;
+    width: 160px;
+    content: "";
+    height: 23px;
+    background: #805eff;
+    bottom: 0;
+    z-index: -1;
+}
