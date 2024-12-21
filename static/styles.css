@@ -71,6 +71,18 @@ p {
     line-height: 25.6px;
 }
 
+nav {
+    position: fixed;
+    z-index: 1000;
+    background: #6c48f0;
+    display: flex;
+    padding: 36px;
+    gap: 32px;
+    width: 100vw;
+    align-items: center;
+    @apply text-white
+}
+
 .btn-coloured {
     height: 48px;
     min-width: 160px;

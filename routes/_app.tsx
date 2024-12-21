@@ -8,6 +8,7 @@ export default function App({ Component }: PageProps) {
         <title>Assignemnt - KC overseas</title>
         <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/home.css" />
+        <link rel="stylesheet" href="/navbar.css" />
       </head>
       <body>
         <Component />
