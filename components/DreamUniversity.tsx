@@ -1,3 +1,5 @@
+import { NextButton } from "./Button.tsx";
+
 const Card = ({ src, title, desc }: {
     src: string;
     title: string;
@@ -16,7 +18,7 @@ const Card = ({ src, title, desc }: {
 
 const DreamUniversity = () => {
     return (
-        <div class="bg-purple-30 h-[750px] items-center py-[70px] text-center mt-[178px] ">
+        <div class="dream-university-card-container">
             <h1 class="pb-[120px]">
                 7 Easy Steps to Land in your Dream University
             </h1>
@@ -31,6 +33,20 @@ const DreamUniversity = () => {
                     desc="Appear for Standardized Tests"
                     src="/images/test-preparation-icon.svg"
                 />
+            </div>
+            <div class="flex justify-center items-center gap-[40px] mt-[40px] translate-x-[-15%]">
+                <NextButton
+                    class="flex-row-reverse"
+                    svgClass="rotate-180"
+                    onClick={() => {
+                        alert("yes");
+                    }}
+                >
+                    Previous
+                </NextButton>
+                <NextButton>
+                    Next
+                </NextButton>
             </div>
         </div>
     );

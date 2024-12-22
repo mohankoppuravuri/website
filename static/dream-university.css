@@ -23,15 +23,26 @@
         @apply bg-text-white shadow-card
 }
 
-.dream-university-card.active::after {
+.dream-university-card-container {
+    @apply bg-purple-30;
+    height: 750px;
+    align-items: center;
+    padding:70px;
+    text-align: center;
+    margin-top: 178px;
+    position: relative;
+}
+
+.dream-university-card-container::after {
     content: "";
     z-index: 999999;
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: 58%;
+    width: 40%;
     background: linear-gradient(270deg, #DBD9FF 46.66%, rgba(219, 217, 255, 0) 96.77%);
-    transform: translate(50%, 0);
-    top: 0;
+    /* transform: translate(50%, 0); */
+    top: 20%;
+    right: 0;
 }
 
 .dream-university-card img {
