@@ -9,6 +9,7 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/home.css" />
         <link rel="stylesheet" href="/navbar.css" />
+        <link rel="stylesheet" href="/dream-university.css" />
       </head>
       <body>
         <Component />

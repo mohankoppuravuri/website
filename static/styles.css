@@ -217,15 +217,3 @@ nav {
     grid-row-gap: 20px;
 }
 
-.arrow-icon {    
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 44px;
-
-    background-color: white;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-    clip-path: polygon(0 100%, 50% 0, 100% 100%);
-}

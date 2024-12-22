@@ -4,12 +4,12 @@ const Card = ({ src, title, desc }: {
     desc: string;
 }) => {
     return (
-        <div class="w-[440px] basic-flex-container bg-text-white shadow-card py-[50px] rounded-[8px] m-auto relative">
-            <div class="absolute   arrow-icon">
+        <div class="dream-university-card">
+            <div class="arrow-icon">
             </div>
-            <img src={src} height="60px" />
-            <h5>{title}</h5>
-            <p>{desc}</p>
+            <img src={src} />
+            <h5 class="mt-[28.5px]">{title}</h5>
+            <p class="text-[14px] leading-[22.5px] mt-[5px]">{desc}</p>
         </div>
     );
 };
