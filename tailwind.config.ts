@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "card": "0px 8px 25px 0px #0000001A",
+      },
       fontSize: {
         "base": "16px",
         "medium": "14px",

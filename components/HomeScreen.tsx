@@ -1,3 +1,5 @@
+import ArrowButton from "./ArrowButton.tsx";
+
 const HomeScreen = () => {
     return (
         <>
@@ -21,6 +23,15 @@ const HomeScreen = () => {
                     programs and aspirations in eminent universities globally
                     and we welcome you to pursue yours!
                 </p>
+                <div class="flex flex-row gap-[30px] ">
+                    <button class="btn-coloured">Enquire now</button>
+                    <div class="flex flex-row gap-[10px]">
+                        <div class="rotate-[90deg]">
+                            <ArrowButton />
+                        </div>
+                        <button>Branch Address</button>
+                    </div>
+                </div>
             </div>
         </>
     );
