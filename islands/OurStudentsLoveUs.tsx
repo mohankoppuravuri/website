@@ -21,7 +21,7 @@ const Card = (
             class="flex flex-col gap-[22px] shadow-card p-[30px] rounded-[10px] w-[370px] h-[340px] bg-text-white"
             style={{
                 position: "absolute",
-                transition: "0.3s ease-in-out",
+                transition: "1.5s ease-in-out",
                 left: `${35 + cardIndex * 400}px`,
             }}
         >
