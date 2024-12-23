@@ -1,6 +1,8 @@
-const ArrowButton = () => {
+import type { JSX } from "preact/jsx-runtime";
+
+const ArrowButton = (props: JSX.HTMLAttributes<HTMLButtonElement>) => {
     return (
-        <button class="btn-icon">
+        <button class="btn-icon" {...props}>
             <svg
                 width="10"
                 height="16"

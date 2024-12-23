@@ -231,3 +231,31 @@ nav {
     height: 17.5px;
     width: 17.5px;
 }
+
+
+
+.carousel-vp  {
+    width: 1170px;
+    height: 750px;
+    display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+    @apply flex  gap-[30px]
+}
+
+
+.cCarousel-inner {
+    display: flex;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    gap: 10px;
+    left: 0px;
+
+    width: 1221px;
+    height: 466px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+  }

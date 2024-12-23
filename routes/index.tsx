@@ -3,12 +3,12 @@ import HomeScreen from "../components/HomeScreen.tsx";
 import Navbar from "../components/Navbar.tsx";
 import Services from "../components/Services.tsx";
 import { WebinarSection } from "../components/WebinarSection.tsx";
-import { OurStudentsLoveUs } from "../components/OurStudentsLoveUs.tsx";
+import { OurStudentsLoveUs } from "../islands/OurStudentsLoveUs.tsx";
 
 export default function Home() {
   return (
     <div style={{ height: "100vh", overflowX: "hidden" }}>
-      {/* <Navbar /> */}
+      <Navbar />
       <HomeScreen />
       <Services />
       <DreamUniversity />
