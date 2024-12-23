@@ -258,3 +258,26 @@ nav {
     position: relative;
     overflow: hidden;
   }
+
+  footer {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 50px;
+    background-image: url(images/footer-bg.svg);
+    padding-top: 120px;
+    padding-bottom: 70px;
+  }
+
+  footer::before {
+    position: absolute;
+    content:"";
+    left: 226px;
+    top: -10px;
+    width: 141px;
+    height: 131px;
+    background-size: 141px;
+    background-image: url(images/footer-icon.png);
+  }

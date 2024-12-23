@@ -49,7 +49,7 @@ const Card = ({ src, title, date, subtitle }: {
 };
 export const LatestUpdates = () => {
     return (
-        <div class="mt-[80px] mb-[12 0px] items-center justify-center flex flex-col gap-[40px]">
+        <div class="mt-[80px] mb-[140px] items-center justify-center flex flex-col gap-[40px]">
             <h1>Latest KC Updates</h1>
             <div class="mt-[40px] flex flex-row gap-[22px]">
                 <div class="w-[570px] h-[500px] shadow-card rounded-[10px] p-[50px] bg-yellow-100 gap-[22px] flex flex-col">
