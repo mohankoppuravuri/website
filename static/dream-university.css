@@ -12,7 +12,7 @@
 }
 
 .dream-university-card {
-        width: 440px;
+        min-width: 440px;
         display: flex;
         flex-direction: column;
         padding-top: 50px;
@@ -20,7 +20,17 @@
         border-radius: 8px;
         margin: auto;
         position: relative;
+        animation: slide 2s ease-in infinite;
         @apply bg-text-white shadow-card
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0); /* Card starts in the view */
+    }
+    100% {
+        transform: translateX(-100%); /* Card slides completely out of view */
+    }
 }
 
 .dream-university-card-container {
@@ -35,16 +45,27 @@
 
 .dream-university-card-container::after {
     content: "";
-    z-index: 999999;
+    z-index: 2;
     position: absolute;
     height: 58%;
     width: 40%;
     background: linear-gradient(270deg, #DBD9FF 46.66%, rgba(219, 217, 255, 0) 96.77%);
-    /* transform: translate(50%, 0); */
     top: 20%;
     right: 0;
 }
 
 .dream-university-card img {
     height: 60px;
+}
+
+.animation-container {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    gap: 30px;
+    margin: auto;
+    overflow-x: hidden;
+    height: auto;
+    transition: transform 0.5s ease;
+
 }

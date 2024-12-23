@@ -26,9 +26,11 @@ export const NextButton = (
   return (
     <button
       {...props}
-      disabled={!IS_BROWSER || props.disabled}
       class={className + (" " + props.class)}
-      onClick={props.onClick}
+      style={{
+        opacity: props.disabled ? 0.5 : 1,
+        cursor: props.disabled ? "not-allowed" : "pointer",
+      }}
     >
       {props.children}
       <svg

@@ -38,19 +38,26 @@ const Services = () => {
                         in your dream university even before you do!
                     </p>
                     <div class="flex flex-row gap-[10px] items-center">
-                        <img src="/images/tickmark.png" class="h-[30px]" />
+                        <div class="tickmark">
+                            <img src="/images/tickmark.svg" />
+                        </div>
+
                         <p>
                             Virtual & In Person Coaching and Counselling
                         </p>
                     </div>
                     <div class="flex flex-row gap-[10px]">
-                        <img src="/images/tickmark.png" class="h-[30px]" />
+                        <div class="tickmark">
+                            <img src="/images/tickmark.svg" />
+                        </div>
                         <p>
                             Comprehensive Assistance for Applications,
                         </p>
                     </div>
                     <div class="flex flex-row gap-[10px]">
-                        <img src="/images/tickmark.png" class="h-[30px]" />
+                        <div class="tickmark">
+                            <img src="/images/tickmark.svg" />
+                        </div>
                         <p>
                             Admissions & Visas High Value Scholarships and Study
                             Loans

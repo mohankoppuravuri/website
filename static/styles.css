@@ -217,3 +217,17 @@ nav {
     grid-row-gap: 20px;
 }
 
+.tickmark {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    @apply shadow-card
+}
+
+.tickmark svg {
+    height: 17.5px;
+    width: 17.5px;
+}
