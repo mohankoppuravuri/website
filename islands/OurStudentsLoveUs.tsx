@@ -8,17 +8,20 @@ const Card = (
         title,
         description,
         cardIndex,
+        className,
     }: {
         src: string;
         name: string;
         title: string;
         description: string;
         cardIndex: number;
+        className?: string;
     },
 ) => {
     return (
         <div
-            class="flex flex-col gap-[22px] shadow-card p-[30px] rounded-[10px] w-[370px] h-[340px] bg-text-white"
+            class={"flex flex-col gap-[22px] shadow-card p-[30px] rounded-[10px] w-[370px] h-[340px] bg-text-white " +
+                className}
             style={{
                 position: "absolute",
                 transition: "1.5s ease-in-out",
@@ -74,6 +77,7 @@ export const OurStudentsLoveUs = () => {
                         description="Northeastern University, USA"
                     />
                     <Card
+                        className="mt-[70px]"
                         cardIndex={leftPositions[1]}
                         src="images/quotations.svg"
                         name="The team made the entire process very easy. Everyone is very helpful and cooperative throughout. I am thankful to KC Sadar Team for making my dream come true."
