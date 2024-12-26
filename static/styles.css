@@ -282,6 +282,10 @@ nav {
     background-image: url(images/footer-icon.png);
   }
 
+  .footer-inputbox {
+    @apply flex gap-[20px]
+  }
+
 .home-screen-enquiry {
     @apply flex flex-row gap-[30px];
 }
@@ -310,6 +314,8 @@ nav {
 .latest-updates-card-hiring {
     @apply w-[570px] h-[500px] shadow-card rounded-[10px] p-[50px] bg-yellow-100 gap-[22px] flex flex-col
 }
+
+
 @media (max-width: 375px) {
     .desktop {
         display: none;
@@ -324,6 +330,11 @@ nav {
     h1 {
         font-size: 26px;
         line-height: 33.8px;
+    }
+    h2 {
+        font-size: 22px;
+        line-height: 31.2px;
+        text-align: center;
     }
     h4 {
         font-size: 16px;
@@ -387,6 +398,23 @@ nav {
         width: 100%;
         padding:20px
     }
+
+    footer {
+        padding:20px;
+        background-repeat:no-repeat;
+        background-image: url(images/footer-mobile-bg.svg);
+    }
+    footer::before {
+        left: 10px;
+        background-size: 50px;
+        background-repeat: no-repeat;
+        top: -5px;
+        width: 55px;
+        height: 55px;
+    }
+    .footer-inputbox {
+        flex-direction: column;
+      }
 }
 
 @media (min-width: 376px) {
