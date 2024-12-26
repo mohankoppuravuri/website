@@ -7,7 +7,7 @@ const Card = ({ src, title, date, subtitle }: {
     subtitle: string;
 }) => {
     return (
-        <div class="w-[270px] h-[500px] shadow-card rounded-[10px] p-[15px] flex flex-col items-center gap-[26px] text-center">
+        <div class="latest-updates-card">
             <div class="h-[120px] w-[120px]  flex items-center">
                 <img src={src} class="w-[120px]  top-[25%]" />
             </div>
@@ -51,8 +51,8 @@ export const LatestUpdates = () => {
     return (
         <div class="mt-[80px] mb-[140px] items-center justify-center flex flex-col gap-[40px]">
             <h1>Latest KC Updates</h1>
-            <div class="mt-[40px] flex flex-row gap-[22px]">
-                <div class="w-[570px] h-[500px] shadow-card rounded-[10px] p-[50px] bg-yellow-100 gap-[22px] flex flex-col">
+            <div class="latest-updates-card-container">
+                <div class="latest-updates-card-hiring">
                     <h1>We’re Hiring!</h1>
                     <h4 class="font-[400] text-text-dark">
                         KC continues recruitments for its offices across India
