@@ -23,7 +23,7 @@ const HomeScreen = () => {
                     programs and aspirations in eminent universities globally
                     and we welcome you to pursue yours!
                 </p>
-                <div class="flex flex-row gap-[30px] ">
+                <div class="home-screen-enquiry">
                     <button class="btn-coloured">Enquire now</button>
                     <div class="flex flex-row gap-[10px]">
                         <div class="rotate-[90deg]">

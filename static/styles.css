@@ -281,3 +281,53 @@ nav {
     background-size: 141px;
     background-image: url(images/footer-icon.png);
   }
+
+.home-screen-enquiry {
+    @apply flex flex-row gap-[30px];
+}
+
+.servcice-card {
+    @apply flex items-center gap-[25px] min-w-[500px] shadow-card rounded-[10px] h-[80px] py-[26px] px-[30px]
+}
+
+@media (max-width: 375px) {
+    .desktop {
+        display: none;
+    }
+    nav img {
+        height: 26px !important;
+        width: 118px;
+    }
+    nav {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 26px;
+        line-height: 33.8px;
+    }
+    p{
+        font-size: 16px;
+        line-height: 25.6px;
+        max-width: 100% !important;
+    }
+    .container {
+        padding:20px;
+    }
+    .home-screen-enquiry {
+        @apply flex-col
+    }
+
+    .grid-container-service-cards {
+        grid-template-columns: 335px;
+        grid-template-rows: max-content max-content max-content max-content;
+    }
+    .servcice-card {
+        min-width: fit-content;
+    }
+}
+
+@media (min-width: 376px) {
+        .mobile {
+            display: none;
+        }
+}
