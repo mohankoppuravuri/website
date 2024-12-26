@@ -36,14 +36,17 @@ const Card = (
 
 export const OurStudentsLoveUs = () => {
     const [leftPositions, setLeftPositions] = useState([0, 1, 2]);
+    const [mobileViewIndex, setMobileViewIndex] = useState(0);
+    const isMobileView = globalThis?.innerWidth <= 375;
 
     return (
-        <div class="relative pt-[120px] pb-[120px] bg-orange-30 items-center flex flex-col gap-[40px] h-[750px]">
+        <div class="our-student-container">
             <h1>Our students love us</h1>
-            <div class="absolute rotate-[180deg] top-[50%] left-[50px]">
+            <div class="students-love-arrow-left">
                 <ArrowButton
                     disabled={leftPositions[0] === 0}
                     onClick={() => {
+                        setMobileViewIndex((prev) => prev - 1);
                         setLeftPositions((prev) => {
                             return prev.map((a) => {
                                 return a + 1;
@@ -52,10 +55,11 @@ export const OurStudentsLoveUs = () => {
                     }}
                 />
             </div>
-            <div class="absolute right-[50px] top-[50%]">
+            <div class="students-love-arrow-right">
                 <ArrowButton
                     disabled={leftPositions[2] === 0}
                     onClick={() => {
+                        setMobileViewIndex((prev) => prev + 1);
                         setLeftPositions((prev) => {
                             return prev.map((a) => {
                                 return a - 1;
@@ -67,28 +71,40 @@ export const OurStudentsLoveUs = () => {
 
             <div class="students-love-scroll-container">
                 <div class="cCarousel-inner">
-                    <Card
-                        cardIndex={leftPositions[0]}
-                        src="images/quotations.svg"
-                        name="Thank you, KC, for all the support you have provided right from shortlisting the university to the visa interview preparations. I really admire the attention and support of the KC Counsellors."
-                        title="Mandar Suryawanshi"
-                        description="Northeastern University, USA"
-                    />
-                    <Card
-                        className="mt-[70px]"
-                        cardIndex={leftPositions[1]}
-                        src="images/quotations.svg"
-                        name="The team made the entire process very easy. Everyone is very helpful and cooperative throughout. I am thankful to KC Sadar Team for making my dream come true."
-                        title="Aarohi Sighel"
-                        description="University of South Australia, Australia"
-                    />
-                    <Card
-                        cardIndex={leftPositions[2]}
-                        src="images/quotations.svg"
-                        name="Helped with counseling and making the right decision...great staff..would definitely recommend it to anyone planning to go abroad for studies.."
-                        title="Susan Mendonca"
-                        description="Conestoga College, Canada"
-                    />
+                    {!isMobileView || mobileViewIndex === 0
+                        ? (
+                            <Card
+                                cardIndex={leftPositions[0]}
+                                src="images/quotations.svg"
+                                name="Thank you, KC, for all the support you have provided right from shortlisting the university to the visa interview preparations. I really admire the attention and support of the KC Counsellors."
+                                title="Mandar Suryawanshi"
+                                description="Northeastern University, USA"
+                            />
+                        )
+                        : null}
+                    {!isMobileView || mobileViewIndex === 1
+                        ? (
+                            <Card
+                                className="mt-[70px]"
+                                cardIndex={leftPositions[1]}
+                                src="images/quotations.svg"
+                                name="The team made the entire process very easy. Everyone is very helpful and cooperative throughout. I am thankful to KC Sadar Team for making my dream come true."
+                                title="Aarohi Sighel"
+                                description="University of South Australia, Australia"
+                            />
+                        )
+                        : null}
+                    {!isMobileView || mobileViewIndex === 2
+                        ? (
+                            <Card
+                                cardIndex={leftPositions[2]}
+                                src="images/quotations.svg"
+                                name="Helped with counseling and making the right decision...great staff..would definitely recommend it to anyone planning to go abroad for studies.."
+                                title="Susan Mendonca"
+                                description="Conestoga College, Canada"
+                            />
+                        )
+                        : null}
                 </div>
             </div>
         </div>
