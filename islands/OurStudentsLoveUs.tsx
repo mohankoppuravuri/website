@@ -20,11 +20,9 @@ const Card = (
 ) => {
     return (
         <div
-            class={"flex flex-col gap-[22px] shadow-card p-[30px] rounded-[10px] w-[370px] h-[340px] bg-text-white " +
+            class={"our-student-card " +
                 className}
             style={{
-                position: "absolute",
-                transition: "1.5s ease-in-out",
                 left: `${35 + cardIndex * 400}px`,
             }}
         >
