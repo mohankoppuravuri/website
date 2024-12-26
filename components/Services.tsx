@@ -26,7 +26,7 @@ const Services = () => {
             <button class="btn-coloured text-text-white mt-[40px]">
                 Enquire Now
             </button>
-            <div class="flex flex-row justify-center items-center gap-[40px] mt-[76px]">
+            <div class="global-ambitions">
                 <img src="/images/realize.png" class="w-[400px] " />
                 <div class="w-[536px] gap-[17px] flex flex-col">
                     <h3>
@@ -42,7 +42,7 @@ const Services = () => {
                             <img src="/images/tickmark.svg" />
                         </div>
 
-                        <p>
+                        <p class="text-left">
                             Virtual & In Person Coaching and Counselling
                         </p>
                     </div>
@@ -50,7 +50,7 @@ const Services = () => {
                         <div class="tickmark">
                             <img src="/images/tickmark.svg" />
                         </div>
-                        <p>
+                        <p class="text-left">
                             Comprehensive Assistance for Applications,
                         </p>
                     </div>
@@ -58,7 +58,7 @@ const Services = () => {
                         <div class="tickmark">
                             <img src="/images/tickmark.svg" />
                         </div>
-                        <p>
+                        <p class="text-left">
                             Admissions & Visas High Value Scholarships and Study
                             Loans
                         </p>

@@ -290,6 +290,10 @@ nav {
     @apply flex items-center gap-[25px] min-w-[500px] shadow-card rounded-[10px] h-[80px] py-[26px] px-[30px]
 }
 
+.global-ambitions {
+    @apply flex flex-row justify-center items-center gap-[40px] mt-[76px]
+}
+
 @media (max-width: 375px) {
     .desktop {
         display: none;
@@ -323,6 +327,30 @@ nav {
     }
     .servcice-card {
         min-width: fit-content;
+    }
+    .global-ambitions{
+        flex-direction: column;
+        padding:20px;
+        text-align: center;
+    }
+    .global-ambitions img{
+        width: 331px;
+    }
+    .global-ambitions > div{
+        width: 100%;
+    }
+    .tickmark{
+        transform: translate(0, -26%);
+    }
+    .dream-university-card-container {
+        padding:20px !important;
+        height: 596px !important;
+    }
+    .dream-university-card {
+        min-width: 274px !important;
+    }
+    .dream-university-card-container::after {
+        display: none;
     }
 }
 

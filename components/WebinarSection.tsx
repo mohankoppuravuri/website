@@ -9,7 +9,7 @@ const WebinarCard = ({ src, time, title, desc }: {
     return (
         <div class="webinar-card">
             <img src={src} />
-            <div class="flex flex-col gap-[15px] mt-[20px]">
+            <div class="webinar-card-desc">
                 <p class="text-blue-100">{time}</p>
                 <h4>{title}</h4>
                 <p class="text-black-60">{desc}</p>
