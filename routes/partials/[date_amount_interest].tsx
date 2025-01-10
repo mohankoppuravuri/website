@@ -32,10 +32,10 @@ const loadContent = async (date_amount_interest: string) => {
                         End of year {idx + 1}
                     </td>
                     <td>
-                        {acc} + {currentYearInterest}
+                        {currentYearInterest.toFixed(2)}
                     </td>
                     <td>
-                        {updatedAcc}
+                        {updatedAcc.toFixed(2)}
                     </td>
                 </tr>
             );
@@ -56,25 +56,20 @@ const loadContent = async (date_amount_interest: string) => {
         }`,
     );
     const finalAmount = accumulatedAmount +
-        ((timeDifference.days / 30) * accumulatedAmount * interestRate) / 100;
+        ((timeDifference.days / 30) * accumulatedAmount * (interestRate / 12)) /
+            100;
 
     trList.push(
         <tr>
-            <td>Months</td>
-            <td>({timeDifference.days / 30})</td>
+            <td>Months ({(timeDifference.days / 30).toFixed(2)})</td>
             <td>
-                {((timeDifference.days / 30) * accumulatedAmount *
-                    interestRate) / 100}
+                {(((timeDifference.days / 30) * accumulatedAmount *
+                    interestRate / 12) / 100).toFixed(2)}
             </td>
+            <td>{finalAmount.toFixed(2)}</td>
         </tr>,
     );
-    trList.push(
-        <tr>
-            <td>Total</td>
-            <td></td>
-            <td>{finalAmount}</td>
-        </tr>,
-    );
+
     return trList;
 };
 
@@ -88,7 +83,7 @@ export default defineRoute(async (req, ctx) => {
             <table>
                 <thead>
                     <td>Title</td>
-                    <td>Description</td>
+                    <td>Interest</td>
                     <td>Amount</td>
                 </thead>
                 <tbody>

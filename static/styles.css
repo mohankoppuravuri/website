@@ -211,8 +211,8 @@ nav {
 
 .container {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
+    flex-direction: column;
+    gap: 20px;
     padding:10px
 }
 
