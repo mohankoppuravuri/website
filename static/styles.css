@@ -32,6 +32,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+input {
+    border: 1px solid black;
+    margin: 5px
+}
 body {
     font-family: BuenosAires;
 }
@@ -71,6 +75,21 @@ p {
     line-height: 25.6px;
 }
 
+table {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+td {
+    padding:5px;
+    border-right: 1px solid black;
+    padding:5px;
+}
+
 nav {
     position: fixed;
     z-index: 1000;
@@ -90,7 +109,7 @@ nav {
     text-align: center;
     background: linear-gradient(#ff6a56, #fdaf4d);
     border-radius: 8px;
-    box-shadow: 0px 8px 30px 0px #0a021733;
+    /* box-shadow: 0px 8px 30px 0px #0a021733; */
     background: linear-gradient(to right, #ff6a56, #fdaf4d);
 }
 
@@ -184,148 +203,17 @@ nav {
     border-radius: 50%;
 }
 
-.rectangle-bottom-overlay {
-    position: relative;
-    z-index: 1;
+.inputContainer {
     display: flex;
-    justify-content: center;
-}
-
-.rectangle-bottom-overlay::after {
-    position: absolute;
-    width: 160px;
-    content: "";
-    height: 23px;
-    background: #805eff;
-    bottom: 0;
-    z-index: -1;
-}
-
-.basic-flex-container {
-    display: flex;
-    gap: 16px;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width:200px;
 }
 
-.grid-container-service-cards {
-    display: grid;
-    grid-template-columns: max-content max-content;
-    grid-template-rows: max-content max-content;
-    grid-column-gap: 30px;
-    grid-row-gap: 20px;
-}
-
-.tickmark {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
+.container {
     display: flex;
-    @apply shadow-card
-}
-
-.tickmark svg {
-    height: 17.5px;
-    width: 17.5px;
-}
-
-
-
-.carousel-vp  {
-    width: 1170px;
-    height: 750px;
-    display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  margin: auto;
-    @apply flex  gap-[30px]
-}
-
-
-.cCarousel-inner {
-    display: flex;
-    position: absolute;
+    flex-direction: row;
     gap: 10px;
-    left: 0px;
-
-    width: 1221px;
-    height: 466px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-  }
-
-  footer {
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    gap: 50px;
-    background-image: url(images/footer-bg.svg);
-    padding-top: 120px;
-    padding-bottom: 70px;
-  }
-
-  footer::before {
-    position: absolute;
-    content:"";
-    left: 226px;
-    top: -10px;
-    width: 141px;
-    height: 131px;
-    background-size: 141px;
-    background-image: url(images/footer-icon.png);
-  }
-
-  .footer-inputbox {
-    @apply flex gap-[20px]
-  }
-
-.home-screen-enquiry {
-    @apply flex flex-row gap-[30px];
-}
-
-.servcice-card {
-    @apply flex items-center gap-[25px] min-w-[500px] shadow-card rounded-[10px] h-[80px] py-[26px] px-[30px]
-}
-
-.global-ambitions {
-    @apply flex flex-row justify-center items-center gap-[40px] mt-[76px]
-}
-
-.our-student-card {
-    transition: 1.5s ease-in-out;
-    @apply flex flex-col gap-[22px] shadow-card p-[30px] rounded-[10px] w-[370px] h-[340px] bg-text-white absolute
-}
-
-.latest-updates-card {
-    @apply w-[270px] h-[500px] shadow-card rounded-[10px] p-[15px] flex flex-col items-center gap-[26px] text-center;
-}
-
-.latest-updates-card-container {
-    @apply mt-[40px] flex flex-row gap-[22px]
-}
-
-.latest-updates-card-hiring {
-    @apply w-[570px] h-[500px] shadow-card rounded-[10px] p-[50px] bg-yellow-100 gap-[22px] flex flex-col
-}
-
-
-.students-love-arrow-left {
-    @apply absolute rotate-[180deg] top-[50%] left-[50px]
-}
-
-.students-love-arrow-right  {
-    @apply absolute right-[50px] top-[50%];
-
-}
-.our-student-container {
-   @apply relative pt-[120px] pb-[120px] bg-orange-30 items-center flex flex-col gap-[40px] h-[750px]
+    padding:10px
 }
 
 @media (max-width: 375px) {
@@ -357,97 +245,7 @@ nav {
         line-height: 25.6px;
         max-width: 100% !important;
     }
-    .container {
-        padding:20px;
-    }
-    .home-screen-enquiry {
-        @apply flex-col
-    }
-
-    .grid-container-service-cards {
-        grid-template-columns: 335px;
-        grid-template-rows: max-content max-content max-content max-content;
-    }
-    .servcice-card {
-        min-width: fit-content;
-    }
-    .global-ambitions{
-        flex-direction: column;
-        padding:20px;
-        text-align: center;
-    }
-    .global-ambitions img{
-        width: 331px;
-    }
-    .global-ambitions > div{
-        width: 100%;
-    }
-    .tickmark{
-        transform: translate(0, -26%);
-    }
-    .dream-university-card-container {
-        padding:20px !important;
-        height: 596px !important;
-    }
-    .dream-university-card {
-        min-width: 274px !important;
-    }
-    .dream-university-card-container::after {
-        display: none;
-    }
-    .our-student-card{
-        width: 280px;
-        height: 320px;
-        left: 35px !important;
-        margin-top: 0 !important;
-    }
-    .our-student-card p {
-        font-size: 14px;
-        line-height: 21px;
-    }
-    .our-student-container {
-        padding-top: 80px;
-        padding-bottom: 80px;
-        height: 615px;
-    }
-    .latest-updates-card {
-        min-width:270px;
-    }
-    .latest-updates-card-hiring {
-        width: 300px
-    }
-    .latest-updates-card-container {
-        overflow-x: auto;
-        width: 100%;
-        padding:20px
-    }
-
-    footer {
-        padding:20px;
-        background-repeat:no-repeat;
-        background-image: url(images/footer-mobile-bg.svg);
-    }
-    footer::before {
-        left: 10px;
-        background-size: 50px;
-        background-repeat: no-repeat;
-        top: -5px;
-        width: 55px;
-        height: 55px;
-    }
-    .footer-inputbox {
-        flex-direction: column;
-      }
-
-      .students-love-arrow-left {
-        left: 0;
-      }
-      .students-love-arrow-right {
-        right:0;
-      }
-      .cCarousel-inner {
-        width: 352px;
-      }
+    
 }
 
 @media (min-width: 376px) {

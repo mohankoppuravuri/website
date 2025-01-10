@@ -5,12 +5,8 @@ export default function App({ Component }: PageProps) {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Assignemnt - KC overseas</title>
+        <title>Interest- Calculator</title>
         <link rel="stylesheet" href="/styles.css" />
-        <link rel="stylesheet" href="/home.css" />
-        <link rel="stylesheet" href="/navbar.css" />
-        <link rel="stylesheet" href="/dream-university.css" />
-        <link rel="stylesheet" href="/webinar.css" />
       </head>
       <body>
         <Component />

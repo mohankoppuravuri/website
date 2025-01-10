@@ -5,9 +5,9 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $partials_date_amount_interest_ from "./routes/partials/[date_amount_interest].tsx";
 import * as $Button from "./islands/Button.tsx";
-import * as $DreamUniversity from "./islands/DreamUniversity.tsx";
-import * as $OurStudentsLoveUs from "./islands/OurStudentsLoveUs.tsx";
+import * as $InterestInputs from "./islands/InterestInputs.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -15,11 +15,12 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/index.tsx": $index,
+    "./routes/partials/[date_amount_interest].tsx":
+      $partials_date_amount_interest_,
   },
   islands: {
     "./islands/Button.tsx": $Button,
-    "./islands/DreamUniversity.tsx": $DreamUniversity,
-    "./islands/OurStudentsLoveUs.tsx": $OurStudentsLoveUs,
+    "./islands/InterestInputs.tsx": $InterestInputs,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

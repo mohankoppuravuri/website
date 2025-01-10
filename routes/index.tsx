@@ -1,23 +1,19 @@
-import DreamUniversity from "../islands/DreamUniversity.tsx";
-import HomeScreen from "../components/HomeScreen.tsx";
-import Navbar from "../components/Navbar.tsx";
-import Services from "../components/Services.tsx";
-import { WebinarSection } from "../components/WebinarSection.tsx";
-import { OurStudentsLoveUs } from "../islands/OurStudentsLoveUs.tsx";
-import { LatestUpdates } from "../components/LatestUpdates.tsx";
-import { Footer } from "../components/Footer.tsx";
+import { Partial } from "$fresh/src/runtime/Partial.tsx";
+import { InterestInputs } from "../islands/InterestInputs.tsx";
 
 export default function Home() {
   return (
-    <div style={{ height: "100vh", overflowX: "hidden" }}>
-      <Navbar />
-      <HomeScreen />
-      <Services />
-      <DreamUniversity />
-      <WebinarSection />
-      <OurStudentsLoveUs />
-      <LatestUpdates />
-      <Footer />
+    <div
+      class="container"
+      style={{ overflowX: "hidden" }}
+      f-client-nav
+    >
+      <aside>
+        <InterestInputs />
+      </aside>
+      <Partial name="docs-content">
+        Add data
+      </Partial>
     </div>
   );
 }
