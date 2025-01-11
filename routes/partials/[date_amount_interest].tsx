@@ -41,30 +41,30 @@ const loadContent = async (date_amount_interest: string) => {
             );
             trList.push(element);
 
-            console.debug(
-                `End of year ${
-                    idx + 1
-                }: ${acc} + ${currentYearInterest} = ${updatedAcc}`,
-            );
+            // console.debug(
+            //     `End of year ${
+            //         idx + 1
+            //     }: ${acc} + ${currentYearInterest} = ${updatedAcc}`,
+            // );
             return updatedAcc;
         }, amount);
 
-    console.debug(
-        `Remaining months (${timeDifference.days / 30}): ${
-            ((timeDifference.days / 30) * accumulatedAmount * interestRate) /
-            100
-        }`,
-    );
+    // console.debug(
+    //     `Remaining months (${timeDifference.days / 30}): ${
+    //         ((timeDifference.days / 30) * accumulatedAmount * interestRate) /
+    //         100
+    //     }`,
+    // );
     const finalAmount = accumulatedAmount +
         ((timeDifference.days / 30) * accumulatedAmount * (interestRate / 12)) /
             100;
 
     trList.push(
         <tr>
-            <td>Months ({(timeDifference.days / 30).toFixed(2)})</td>
+            <td>Days ({timeDifference.days})</td>
             <td>
-                {(((timeDifference.days / 30) * accumulatedAmount *
-                    interestRate / 12) / 100).toFixed(2)}
+                {(((timeDifference.days) * accumulatedAmount *
+                    interestRate / 365) / 100).toFixed(2)}
             </td>
             <td>{finalAmount.toFixed(2)}</td>
         </tr>,
@@ -77,9 +77,22 @@ export default defineRoute(async (req, ctx) => {
     const content = await loadContent(
         ctx.params.date_amount_interest,
     );
-
+    const [startDateStr, _amount, interest] = ctx.params.date_amount_interest
+        .split("_");
+    const date = new Date();
     return (
-        <Partial name="docs-content">
+        <Partial name="docs-content" mode="append">
+            <div class="flex gap-[10px]">
+                <div class="text-green-100">Start: {startDateStr},</div>
+                <div class="text-green-100">
+                    Current: {date.toDateString()},
+                </div>
+                <div class="text-green-100">
+                    Interest: {interest},
+                </div>
+                <div class="text-green-100">Amount: {_amount}</div>
+            </div>
+
             <table>
                 <thead>
                     <td>Title</td>
@@ -90,6 +103,7 @@ export default defineRoute(async (req, ctx) => {
                     {content}
                 </tbody>
             </table>
+            <hr />
         </Partial>
     );
 });
