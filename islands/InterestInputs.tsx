@@ -17,7 +17,7 @@ export const InterestInputs = () => {
                 <label for="amount" class="w-[100px]">Amount</label>
                 <input
                     id="amount"
-                    class="rounded-[5px] pl-[10px] h-[48px]"
+                    class="rounded-[5px] pl-[10px] h-[38px]"
                     label="Amount"
                     placeholder="Amount"
                     value={amount}
@@ -31,7 +31,7 @@ export const InterestInputs = () => {
                 <label for="interest" class="w-[100px]">Interest</label>
                 <input
                     id="interest"
-                    class="rounded-[5px] pl-[10px] h-[48px]"
+                    class="rounded-[5px] pl-[10px] h-[38px]"
                     label="Interest"
                     value={interestRate}
                     type="number"
@@ -45,7 +45,7 @@ export const InterestInputs = () => {
                 <label for="startDate" class="min-w-[60px]">Date</label>
                 <input
                     id="startDate"
-                    class="rounded-[5px] pl-[10px] h-[48px]"
+                    class="rounded-[5px] pl-[10px] h-[38px]"
                     label="Start Date"
                     type="date"
                     value={startDate}
@@ -54,7 +54,12 @@ export const InterestInputs = () => {
                     }}
                 />
             </div>
-            <button class="btn-coloured">Submit</button>
+            <button
+                class="btn-coloured"
+                disabled={!startDate || !amount || !interestRate}
+            >
+                Submit
+            </button>
         </form>
     );
 };

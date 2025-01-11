@@ -8,11 +8,15 @@ export default function Home() {
       style={{ overflowX: "hidden" }}
       f-client-nav
     >
+      <h3>Minimalist Interest calculator.</h3>
+      <p>Compounds annually.</p>
+      <p>Takes interest per annum. Example 18% interest for 1 year period.</p>
+      <hr />
       <aside>
         <InterestInputs />
       </aside>
       <Partial name="docs-content">
-        Add data
+        No data present
       </Partial>
     </div>
   );
