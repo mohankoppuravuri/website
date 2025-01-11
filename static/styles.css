@@ -42,8 +42,8 @@ body {
 
 h1 {
     font-weight: 600;
-    font-size: 42px;
-    line-height: 54.6px;
+    font-size: 26px;
+    line-height: 31.2px;
 }
 
 h2 {
@@ -79,6 +79,7 @@ table {
     border: 1px solid black;
     border-radius: 8px;
     padding: 5px;
+    width: 100%;
 }
 
 tr {
@@ -253,3 +254,15 @@ nav {
             display: none;
         }
 }
+@media print {
+    body {
+      visibility: hidden;
+    }
+    .section-to-print {
+      visibility: visible;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+  

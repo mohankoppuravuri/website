@@ -1,22 +1,27 @@
 // const st = prompt("enter start date");
-export const calculateInterest = ({ startDateStr }: {
+const yearMilliseconds = 360 * 24 * 60 * 60 * 1000;
+const dayMilliseconds = 24 * 60 * 60 * 1000;
+export const calculateInterest = ({ startDateStr, endDateStr }: {
     startDateStr: string;
+    endDateStr: string;
 }) => {
     const startDate = new Date(startDateStr);
 
-    const todayDate = new Date();
+    const todayDate = new Date(endDateStr);
 
-    const timeDifferenceInMilliseconds = todayDate.getTime() -
-        startDate.getTime();
+    const timeDifferenceInMilliseconds = Math.abs(
+        todayDate.getTime() -
+            startDate.getTime(),
+    ) + dayMilliseconds;
 
-    const yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
-    const dayMilliseconds = 24 * 60 * 60 * 1000;
+    const totalNumberOfDays = timeDifferenceInMilliseconds / dayMilliseconds;
 
     const timeDifference = {
         months: Math.floor(timeDifferenceInMilliseconds / yearMilliseconds),
         days: Math.floor(
             (timeDifferenceInMilliseconds % yearMilliseconds) / dayMilliseconds,
         ),
+        totalNumberOfDays,
     };
 
     return timeDifference;

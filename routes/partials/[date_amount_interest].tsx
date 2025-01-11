@@ -11,14 +11,7 @@ export const config: RouteConfig = {
     skipInheritedLayouts: true,
 };
 
-const loadContent = async (date_amount_interest: string) => {
-    const [startDateStr, _amount, interest] = date_amount_interest
-        .split("_");
-    const interestRate = Number(interest);
-    const timeDifference = calculateInterest({
-        startDateStr,
-    });
-    const amount = Number(_amount);
+const loadContent = async ({ interestRate, timeDifference, amount }) => {
     const trList: JSX.Element = [];
 
     const accumulatedAmount = new Array(timeDifference.months)
@@ -64,7 +57,7 @@ const loadContent = async (date_amount_interest: string) => {
             <td>Days ({timeDifference.days})</td>
             <td>
                 {(((timeDifference.days) * accumulatedAmount *
-                    interestRate / 365) / 100).toFixed(2)}
+                    interestRate / 360) / 100).toFixed(2)}
             </td>
             <td>{finalAmount.toFixed(2)}</td>
         </tr>,
@@ -74,23 +67,35 @@ const loadContent = async (date_amount_interest: string) => {
 };
 
 export default defineRoute(async (req, ctx) => {
-    const content = await loadContent(
-        ctx.params.date_amount_interest,
-    );
-    const [startDateStr, _amount, interest] = ctx.params.date_amount_interest
+    const [startDateStr, endDateStr, amount, interest] = ctx.params
+        .date_amount_interest
         .split("_");
-    const date = new Date();
+
+    const interestRate = Number(interest);
+    const timeDifference = calculateInterest({
+        startDateStr,
+        endDateStr,
+    });
+    const content = await loadContent({
+        amount: Number(amount),
+        interestRate,
+        timeDifference,
+    });
+
     return (
         <Partial name="docs-content" mode="append">
-            <div class="flex gap-[10px]">
+            <div class="flex gap-[10px] mt-[10px]">
                 <div class="text-green-100">Start: {startDateStr},</div>
                 <div class="text-green-100">
-                    Current: {date.toDateString()},
+                    Current: {endDateStr},
                 </div>
                 <div class="text-green-100">
                     Interest: {interest},
                 </div>
-                <div class="text-green-100">Amount: {_amount}</div>
+                <div class="text-green-100">Amount: {amount}</div>
+                <div class="text-green-100">
+                    Days: {timeDifference.totalNumberOfDays}
+                </div>
             </div>
 
             <table>

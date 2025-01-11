@@ -8,16 +8,25 @@ export default function Home() {
       style={{ overflowX: "hidden" }}
       f-client-nav
     >
-      <h3>Minimalist Interest calculator.</h3>
-      <p>Compounds annually.</p>
-      <p>Takes interest per annum. Example 18% interest for 1 year period.</p>
+      <h1>Compound Interest calculator.</h1>
+      <ol type={"1"}>
+        <li>
+          Compounds annually.
+        </li>
+        <li>
+          Takes interest per annum. Includes current day
+        </li>
+      </ol>
+
       <hr />
       <aside>
         <InterestInputs />
       </aside>
-      <Partial name="docs-content">
-        No data present
-      </Partial>
+      <main class="section-to-print">
+        <Partial name="docs-content">
+          List of interest rates.
+        </Partial>
+      </main>
     </div>
   );
 }

@@ -2,6 +2,9 @@ import { useState } from "preact/hooks";
 import Button from "./Button.tsx";
 
 export const InterestInputs = () => {
+    const [endDate, setEndDate] = useState(
+        new Date().toISOString().split("T")[0],
+    );
     const [startDate, setStartDate] = useState();
     const [interestRate, setInterestRate] = useState();
     const [amount, setAmount] = useState();
@@ -10,7 +13,7 @@ export const InterestInputs = () => {
         <form
             class="inputContainer"
             method="GET"
-            f-partial={`/partials/${startDate}_${amount}_${interestRate}`}
+            f-partial={`/partials/${startDate}_${endDate}_${amount}_${interestRate}`}
             href={`/partials/${startDate}_${amount}_${interestRate}`}
         >
             <div class="flex align-middle text-center leading-[55px]">
@@ -42,7 +45,7 @@ export const InterestInputs = () => {
                 />
             </div>
             <div class="flex align-middle text-center leading-[55px]">
-                <label for="startDate" class="min-w-[60px]">Date</label>
+                <label for="startDate" class="min-w-[60px]">Start</label>
                 <input
                     id="startDate"
                     class="rounded-[5px] pl-[10px] h-[38px]"
@@ -51,6 +54,18 @@ export const InterestInputs = () => {
                     value={startDate}
                     onChange={(e) => {
                         setStartDate(e.target.value);
+                    }}
+                />
+
+                <label for="endDate" class="min-w-[60px]">End</label>
+                <input
+                    id="endDate"
+                    class="rounded-[5px] pl-[10px] h-[38px]"
+                    label="Start Date"
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => {
+                        setEndDate(e.target.value);
                     }}
                 />
             </div>
