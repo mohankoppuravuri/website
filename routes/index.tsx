@@ -11,7 +11,7 @@ export default function Home() {
       <h1>Compound Interest calculator.</h1>
       <ol type={"1"}>
         <li>
-          Compounds annually.
+          Compounds annually i.e for every 360 days.
         </li>
         <li>
           Takes interest per annum. Includes current day

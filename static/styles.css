@@ -80,6 +80,7 @@ table {
     border-radius: 8px;
     padding: 5px;
     width: 100%;
+    table-layout: fixed;
 }
 
 tr {
