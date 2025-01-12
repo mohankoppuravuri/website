@@ -1,6 +1,6 @@
 // const st = prompt("enter start date");
-const yearMilliseconds = 360 * 24 * 60 * 60 * 1000;
-const dayMilliseconds = 24 * 60 * 60 * 1000;
+export const yearMilliseconds = 360 * 24 * 60 * 60 * 1000;
+export const dayMilliseconds = 24 * 60 * 60 * 1000;
 export const calculateInterest = ({ startDateStr, endDateStr }: {
     startDateStr: string;
     endDateStr: string;
@@ -25,4 +25,20 @@ export const calculateInterest = ({ startDateStr, endDateStr }: {
     };
 
     return timeDifference;
+};
+
+export const calculateSimpleInterest: (
+    amount: number,
+    t1: number,
+    t2: number,
+    rate: number,
+) => number = (
+    amount,
+    t1,
+    t2,
+    rate,
+) => {
+    console.debug(t1, t2, t2 - t1, dayMilliseconds, amount);
+    const numberOfDays = (t2 - t1) / dayMilliseconds;
+    return amount * numberOfDays * (rate / 360) / 100;
 };
