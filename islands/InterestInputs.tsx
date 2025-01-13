@@ -1,59 +1,33 @@
-import { useState } from "preact/hooks";
-
-import {
-    calculateSimpleInterest,
-    dayMilliseconds,
-    yearMilliseconds,
-} from "../interestCalculator.ts";
-
-interface inputData {
-    startDateStr: string;
-    endDateStr: string;
-    amount: number;
-    interest: number;
-}
-
-interface TableRow {
-    comment: string;
-    description:
-        | "ANNUAL_COMPOUND"
-        | "MONEY_RECEIVED"
-        | "VIEW";
-    currentTime: number;
-    lastInterestCalculateTime: number;
-    interestAmount: number;
-    principalAmount: number;
-}
-
-type CheckPoint =
-    | number
-    | {
-        type: "MONEY_RECEIVED";
-        time: number;
-        amount: number;
-    }
-    | { type: "ANNUAL_COMPOUND"; time: number }
-    | { type: "VIEW"; time: number };
+import { useReducer, useState } from "preact/hooks";
+import { UpdatedInterestTable } from "../components/UpdateInterestTable.tsx";
+import { ActionType, reducer } from "../InterestRowState.ts";
+import { dayMilliseconds, yearMilliseconds } from "../interestCalculator.ts";
 
 export const InterestInputs = () => {
+    const [tableData, dispatch] = useReducer(reducer, []);
     const [endDate, setEndDate] = useState(
         new Date().getTime(),
     );
     const [startDate, setStartDate] = useState<number>();
-    const [interestRate, setInterestRate] = useState<number>();
+    const [interestRate, setInterestRate] = useState<number>(12);
     const [amount, setAmount] = useState<number>();
-    const [tableRow, setTableRow] = useState<TableRow[]>([]);
+
     const [receivedDates, setReceivedDates] = useState<
-        { amount: number; time: number; type: "MONEY_RECEIVED" }[]
+        {
+            amount: number;
+            time: number;
+            type: "MONEY_RECEIVED";
+            interestRate: number;
+        }[]
     >([]);
 
     const calculateTableData = () => {
-        let checkPoints: CheckPoint[] = [
-            startDate!,
+        let checkPoints: ActionType[] = [
             ...receivedDates,
             {
                 type: "VIEW",
                 time: endDate,
+                interestRate,
             },
         ];
         let i = 1;
@@ -62,6 +36,7 @@ export const InterestInputs = () => {
                 checkPoints.push({
                     time: startDate! + yearMilliseconds * i,
                     type: "ANNUAL_COMPOUND",
+                    interestRate,
                 });
                 i++;
                 continue;
@@ -86,197 +61,211 @@ export const InterestInputs = () => {
             }
             return 0;
         });
-
-        setTableRow(() => {
-            const tableData: TableRow[] = checkPoints.reduce(
-                (acc: TableRow[], data: CheckPoint, idx) => {
-                    if (idx === 0) {
-                        return [...acc, {
-                            currentTime: startDate,
-                            lastInterestCalculateTime: startDate,
-                            interestAmount: 0,
-                            principalAmount: amount,
-                            comment: `Initial amount ${amount}`,
-                        }];
-                    }
-
-                    if (
-                        typeof data === "object" &&
-                        data.type === "ANNUAL_COMPOUND"
-                    ) {
-                        const interestAmount = calculateSimpleInterest(
-                            acc[acc.length - 1].principalAmount,
-                            acc[acc.length - 1]
-                                .lastInterestCalculateTime,
-                            data.time + dayMilliseconds,
-                            interestRate!,
-                        );
-                        return [...acc, {
-                            comment: `Annual interest ${interestAmount} /-`,
-                            description: "ANNUAL_COMPOUND",
-                            currentTime: data.time,
-                            interestAmount,
-                            principalAmount:
-                                acc[acc.length - 1].principalAmount +
-                                interestAmount,
-                            lastInterestCalculateTime: data.time +
-                                dayMilliseconds,
-                        }];
-                    }
-
-                    if (
-                        typeof data === "object" &&
-                        data.type === "MONEY_RECEIVED"
-                    ) {
-                        return [...acc, {
-                            description: "MONEY_RECEIVED",
-                            currentTime: data.time,
-                            lastInterestCalculateTime: data.time,
-                            interestAmount: acc[acc.length - 1].interestAmount +
-                                calculateSimpleInterest(
-                                    acc[acc.length - 1].principalAmount,
-                                    acc[acc.length - 1]
-                                        .lastInterestCalculateTime,
-                                    data.time,
-                                    interestRate!,
-                                ),
-                            principalAmount:
-                                acc[acc.length - 1].principalAmount +
-                                -data.amount,
-                        }];
-                    }
-
-                    if (
-                        typeof data === "object" &&
-                        data.type === "VIEW"
-                    ) {
-                        return [...acc, {
-                            comment: `View the principal and interest`,
-                            description: "VIEW",
-                            currentTime: data.time,
-                            lastInterestCalculateTime:
-                                acc[acc.length - 1].lastInterestCalculateTime,
-                            interestAmount: acc[acc.length - 1].interestAmount,
-                            principalAmount:
-                                acc[acc.length - 1].principalAmount,
-                        }];
-                    }
-                },
-                [],
-            );
-            return tableData;
+        checkPoints.forEach((data) => {
+            dispatch(data);
         });
     };
 
     return (
         <>
-            <div>
-                <div class="flex align-middle text-center leading-[55px]">
-                    <label for="amount" class="w-[100px]">Amount</label>
-                    <input
-                        id="amount"
-                        class="rounded-[5px] pl-[10px] h-[38px]"
-                        label="Amount"
-                        placeholder="Amount"
-                        value={amount}
-                        type="number"
-                        onChange={(e) => {
-                            setAmount(Number(e.target.value));
+            <aside>
+                <div class="border-black border-solid border-1 p-[20px] rounded-[4px] ">
+                    <div class="flex align-middle text-center leading-[55px]">
+                        <label for="amount" class="w-[100px] text-left">
+                            Amount
+                        </label>
+                        <input
+                            id="amount"
+                            class="rounded-[5px] pl-[10px] h-[38px]"
+                            label="Amount"
+                            placeholder="Amount"
+                            value={amount}
+                            type="number"
+                            onChange={(e) => {
+                                setAmount(Number(e.target.value));
+                            }}
+                        />
+                    </div>
+                    <div class="flex align-middle leading-[55px]">
+                        <label for="interest" class="w-[100px] text-left">
+                            Interest
+                        </label>
+                        <input
+                            id="interest"
+                            class="rounded-[5px] pl-[10px] h-[38px]"
+                            label="Interest"
+                            value={interestRate}
+                            type="number"
+                            placeholder="Int / annum (18)"
+                            onChange={(e) => {
+                                setInterestRate(e.target.value);
+                            }}
+                        />
+                    </div>
+
+                    <div class="flex leading-[55px]">
+                        <label for="startDate" class="w-[100px] text-left">
+                            Start
+                        </label>
+                        <input
+                            id="startDate"
+                            class="rounded-[5px] pl-[10px] h-[38px] w-[192px]"
+                            label="Start Date"
+                            type="date"
+                            // value={startDate
+                            //     ? new Date(startDate).toISOString().split(
+                            //         "T",
+                            //     )[0]
+                            //     : null}
+                            onChange={(e) => {
+                                setStartDate(
+                                    new Date(e.target.value).getTime(),
+                                );
+                            }}
+                        />
+                    </div>
+                    <div class="flex leading-[55px]">
+                        <label for="endDate" class="w-[100px]">
+                            End
+                        </label>
+                        <input
+                            id="endDate"
+                            class="rounded-[5px] pl-[10px] h-[38px] w-[192px]"
+                            label="Start Date"
+                            type="date"
+                            value={new Date(endDate).toISOString().split(
+                                "T",
+                            )[0]}
+                            onChange={(e) => {
+                                setEndDate(
+                                    new Date(e.target.value).getTime(),
+                                );
+                            }}
+                        />
+                    </div>
+                    <div>
+                        <p class="mb-[15px]">
+                            If you have systematic deduction plan then you can
+                            add it below
+                        </p>
+                        {tableData?.length ? null : (
+                            <button
+                                class="btn-text min-w-[95px] mb-[15px]"
+                                onClick={(e) => {
+                                    setReceivedDates((
+                                        perv,
+                                    ) => [...perv, {
+                                        amount: 0,
+                                        time: startDate! +
+                                            dayMilliseconds,
+                                        type: "MONEY_RECEIVED",
+                                        interestRate,
+                                    }]);
+                                }}
+                            >
+                                Add More
+                            </button>
+                        )}
+                        {receivedDates.map((_, idx) => {
+                            return (
+                                <div key={idx}>
+                                    <input
+                                        type="date"
+                                        onChange={(e) => {
+                                            setReceivedDates((prev) =>
+                                                prev.map((abc, _idx) => {
+                                                    if (idx === _idx) {
+                                                        return {
+                                                            ...abc,
+                                                            time: new Date(
+                                                                e.target.value,
+                                                            ).getTime(),
+                                                        };
+                                                    }
+                                                    return abc;
+                                                })
+                                            );
+                                        }}
+                                    />
+                                    <input
+                                        type="number"
+                                        onChange={(e) => {
+                                            setReceivedDates((prev) =>
+                                                prev.map((abc, _idx) => {
+                                                    if (idx === _idx) {
+                                                        return {
+                                                            ...abc,
+                                                            amount: Number(
+                                                                e.target.value,
+                                                            ),
+                                                        };
+                                                    }
+                                                    return abc;
+                                                })
+                                            );
+                                        }}
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            setReceivedDates((prev) =>
+                                                prev.filter((a, _idx) =>
+                                                    _idx !== idx
+                                                )
+                                            );
+                                        }}
+                                    >
+                                        delete
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <button
+                        onClick={() => {
+                            dispatch({
+                                time: startDate!,
+                                type: "ADD",
+                                initialState: {
+                                    description: "ADD",
+                                    currentTime: startDate!,
+                                    lastInterestCalculateTime: startDate!,
+                                    interestAmount: 0,
+                                    principalAmount: amount!,
+                                    comment: `Initial amount ${amount}`,
+                                },
+                            });
+                            calculateTableData();
                         }}
-                    />
+                        class="btn-coloured"
+                        disabled={!startDate || !amount || !interestRate ||
+                            Boolean(tableData?.length)}
+                    >
+                        Submit
+                    </button>
+                    {tableData?.length
+                        ? (
+                            <button
+                                class="btn-text min-w-[95px] ml-1"
+                                onClick={() => {
+                                    dispatch({
+                                        time: startDate!,
+                                        type: "RESET",
+                                    });
+                                    setReceivedDates([]);
+                                }}
+                                disabled={!startDate || !amount ||
+                                    !interestRate}
+                            >
+                                Reset
+                            </button>
+                        )
+                        : null}
                 </div>
-                <div class="flex align-middle text-center leading-[55px]">
-                    <label for="interest" class="w-[100px]">Interest</label>
-                    <input
-                        id="interest"
-                        class="rounded-[5px] pl-[10px] h-[38px]"
-                        label="Interest"
-                        value={interestRate}
-                        type="number"
-                        placeholder="Int / annum (18)"
-                        onChange={(e) => {
-                            setInterestRate(e.target.value);
-                        }}
-                    />
-                </div>
-                <div class="flex align-middle text-center leading-[55px]">
-                    <label for="startDate" class="min-w-[60px]">Start</label>
-                    <input
-                        id="startDate"
-                        class="rounded-[5px] pl-[10px] h-[38px]"
-                        label="Start Date"
-                        type="date"
-                        value={startDate
-                            ? new Date(startDate).toISOString().split("T")[0]
-                            : null}
-                        onChange={(e) => {
-                            setStartDate(new Date(e.target.value).getTime());
-                        }}
-                    />
+            </aside>
 
-                    <label for="endDate" class="min-w-[60px]">End</label>
-                    <input
-                        id="endDate"
-                        class="rounded-[5px] pl-[10px] h-[38px]"
-                        label="Start Date"
-                        type="date"
-                        value={new Date(endDate).toISOString().split("T")[0]}
-                        onChange={(e) => {
-                            setEndDate(new Date(e.target.value).getTime());
-                        }}
-                    />
-                </div>
-                <button
-                    onClick={() => {
-                        calculateTableData();
-                    }}
-                    class="btn-coloured"
-                    disabled={!startDate || !amount || !interestRate}
-                >
-                    Submit
-                </button>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <td>Date</td>
-
-                        <td>Description</td>
-                        <td>Principal Amount</td>
-                        <td>Balance</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableRow.map(({
-                        currentTime,
-                        principalAmount,
-                        interestAmount,
-                        description,
-                        comment,
-                    }, idx) => {
-                        return (
-                            <tr key={`${currentTime} + ${idx}`}>
-                                <td>
-                                    {new Date(currentTime).toISOString().split(
-                                        "T",
-                                    )[0]}
-                                </td>
-                                <td>{comment}</td>
-
-                                <td>
-                                    {principalAmount}
-                                </td>
-                                <td>
-                                    {description === "VIEW"
-                                        ? principalAmount + interestAmount
-                                        : principalAmount}
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+            <main class="section-to-print p-[20px]">
+                <UpdatedInterestTable tableData={tableData} />
+            </main>
         </>
     );
 };
