@@ -148,6 +148,87 @@ export const InterestInputs = () => {
                             If you have systematic deduction plan then you can
                             add it below
                         </p>
+
+                        {receivedDates.map((_, idx) => {
+                            return (
+                                <div
+                                    key={idx}
+                                    class="rounded-[4px] p-[14px] shadow-card mb-[8px]"
+                                >
+                                    <div class="flex leading-[55px]">
+                                        <label
+                                            for={`receivedDate + ${idx}`}
+                                            class="w-[100px] text-left"
+                                        >
+                                            Date
+                                        </label>
+                                        <input
+                                            id={`receivedDate + ${idx}`}
+                                            type="date"
+                                            class="rounded-[5px] pl-[10px] h-[38px] w-[192px]"
+                                            onChange={(e) => {
+                                                setReceivedDates((prev) =>
+                                                    prev.map((abc, _idx) => {
+                                                        if (idx === _idx) {
+                                                            return {
+                                                                ...abc,
+                                                                time: new Date(
+                                                                    e.target
+                                                                        .value,
+                                                                ).getTime(),
+                                                            };
+                                                        }
+                                                        return abc;
+                                                    })
+                                                );
+                                            }}
+                                        />
+                                    </div>
+                                    <div class="flex leading-[55px]">
+                                        <label
+                                            for={`receivedAmount + ${idx}`}
+                                            class="w-[100px] text-left"
+                                        >
+                                            Amount
+                                        </label>
+                                        <input
+                                            id={`receivedAmount-${idx}`}
+                                            class="rounded-[5px] pl-[10px] h-[38px]"
+                                            type="number"
+                                            placeholder="0"
+                                            onChange={(e) => {
+                                                setReceivedDates((prev) =>
+                                                    prev.map((abc, _idx) => {
+                                                        if (idx === _idx) {
+                                                            return {
+                                                                ...abc,
+                                                                amount: Number(
+                                                                    e.target
+                                                                        .value,
+                                                                ),
+                                                            };
+                                                        }
+                                                        return abc;
+                                                    })
+                                                );
+                                            }}
+                                        />
+                                    </div>
+                                    <button
+                                        class="btn-text min-w-[95px] mb-[15px]"
+                                        onClick={() => {
+                                            setReceivedDates((prev) =>
+                                                prev.filter((a, _idx) =>
+                                                    _idx !== idx
+                                                )
+                                            );
+                                        }}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            );
+                        })}
                         {tableData?.length ? null : (
                             <button
                                 class="btn-text min-w-[95px] mb-[15px]"
@@ -166,59 +247,6 @@ export const InterestInputs = () => {
                                 Add More
                             </button>
                         )}
-                        {receivedDates.map((_, idx) => {
-                            return (
-                                <div key={idx}>
-                                    <input
-                                        type="date"
-                                        onChange={(e) => {
-                                            setReceivedDates((prev) =>
-                                                prev.map((abc, _idx) => {
-                                                    if (idx === _idx) {
-                                                        return {
-                                                            ...abc,
-                                                            time: new Date(
-                                                                e.target.value,
-                                                            ).getTime(),
-                                                        };
-                                                    }
-                                                    return abc;
-                                                })
-                                            );
-                                        }}
-                                    />
-                                    <input
-                                        type="number"
-                                        onChange={(e) => {
-                                            setReceivedDates((prev) =>
-                                                prev.map((abc, _idx) => {
-                                                    if (idx === _idx) {
-                                                        return {
-                                                            ...abc,
-                                                            amount: Number(
-                                                                e.target.value,
-                                                            ),
-                                                        };
-                                                    }
-                                                    return abc;
-                                                })
-                                            );
-                                        }}
-                                    />
-                                    <button
-                                        onClick={() => {
-                                            setReceivedDates((prev) =>
-                                                prev.filter((a, _idx) =>
-                                                    _idx !== idx
-                                                )
-                                            );
-                                        }}
-                                    >
-                                        delete
-                                    </button>
-                                </div>
-                            );
-                        })}
                     </div>
                     <button
                         onClick={() => {
