@@ -59,7 +59,7 @@ export const reducer: (
                 interestRate!,
             );
             return [...acc, {
-                comment: `Principal amount recalculated by ${
+                comment: `Principal amount updated by ${
                     interestAmount.toFixed(2)
                 }`,
                 description: "ANNUAL_COMPOUND",

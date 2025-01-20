@@ -31,6 +31,15 @@ export const UpdatedInterestTable = ({ tableData }: {
     return (
         <>
             <hr />
+            <h3 class="p-5 pl-[0] text-xl">
+                Total amount:{" "}
+                {(tableData[tableData.length - 1].principalAmount +
+                    tableData[tableData.length - 1].interestAmount)
+                    .toFixed(
+                        2,
+                    )}
+            </h3>
+
             <table>
                 <thead>
                     <tr>
