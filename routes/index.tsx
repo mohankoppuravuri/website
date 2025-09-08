@@ -12,6 +12,8 @@ export default function Home() {
         <h1 class="p-5 text-3xl">Compound Interest Calculator</h1>
       </div>
 
+      <InterestInputs />
+
       <h4 class="p-5 text-xl">
         Determine how much your money can grow using the power of compound
         interest.
@@ -38,10 +40,6 @@ export default function Home() {
           withdrawals.
         </li>
       </ol>
-
-      <hr />
-
-      <InterestInputs />
 
       {
         /* <main class="section-to-print">

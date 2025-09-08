@@ -74,7 +74,7 @@ export const reducer: (
 
       let principalAmount = acc[acc.length - 1].principalAmount;
 
-      let interestAmount = acc[acc.length - 1].interestAmount +
+      let interestAmountTillDate = acc[acc.length - 1].interestAmount +
         calculateSimpleInterest(
           acc[acc.length - 1].principalAmount,
           acc[acc.length - 1]
@@ -83,11 +83,12 @@ export const reducer: (
           interestRate!,
         );
 
-      if (interestAmount > data.amount) {
-        interestAmount = interestAmount - data.amount;
+      if (interestAmountTillDate > data.amount) {
+        interestAmountTillDate = interestAmountTillDate - data.amount;
       } else {
         principalAmount = principalAmount -
-          (data.amount - interestAmount);
+          (data.amount - interestAmountTillDate);
+        interestAmountTillDate = 0;
       }
 
       return [...acc, {
@@ -96,7 +97,7 @@ export const reducer: (
         currentTime: data.time,
         lastInterestCalculateTime: data.time +
           dayMilliseconds,
-        interestAmount: 0,
+        interestAmount: interestAmountTillDate,
         principalAmount,
       }];
     }
